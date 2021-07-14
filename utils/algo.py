@@ -10,6 +10,6 @@ def sliding_window(data, win, step=None):
     n = int((nt-win+1)/step) #number of windows
 
     for i in range(n):
-        print('\n', i*step,' ', i*step + win)
+#         print('\n', i*step,' ', i*step + win)
         windows.append( data[i*step:i*step + win] )
     return windows
