@@ -27,14 +27,14 @@ def pre_process(subj, exp, hpf=None):
         V = V/V.mean(0) 
     return V
 
-def comp_avg_signal(V, length, muscle):
+def comp_avg_signal(V, trange, muscle):
     """average the broadband power across all tongue and hand trials"""
     nt, nchan = V.shape
     nstim = len(dat1['t_on'])
     stim_id = {'tongue':11, 'hand':12}[muscle]
-    trange = np.arange(0, length) #time range?
+    trange = np.arange(*trange) #time range?
     ts = dat1['t_on'][:,np.newaxis] + trange #time series 
-    V_epochs = np.reshape(V[ts, :], (nstim, length, nchan))
+    V_epochs = np.reshape(V[ts, :], (nstim, len(trange), nchan))
     return (V_epochs[dat1['stim_id']==stim_id]).mean(0) # averging across the experiment no.
 
 
